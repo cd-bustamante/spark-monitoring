@@ -21,7 +21,7 @@ stages:
       inputs:
         targetType: inline
         script: |
-          set -x
+          set -xeu
           ls -la src/spark-listeners/
           ls -la src/spark-listeners-loganalytics
           ls -la ./build.sh
