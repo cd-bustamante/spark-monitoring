@@ -21,7 +21,11 @@ stages:
       inputs:
         targetType: inline
         script: |
+          set -x
+          ls -la src/spark-listeners/
+          ls -la src/spark-listeners-loganalytics
           chmod +x ./build.sh
           docker run -it --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
           pwd
-          ls -la
+          ls -la src/spark-listeners/
+          ls -la src/spark-listeners-loganalytics
