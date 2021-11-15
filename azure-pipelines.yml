@@ -6,27 +6,22 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+stages:
 
-# steps:
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     goals: 'package'
-  steps:
-  - task: Bash@3
-    displayName: Creating profiles
-    inputs:
-      targetType: inline
-      script: |
-        chmod +x ./build.sh
-        docker run -it --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
-        pwd
-        ls -la
+- stage: Generating monitoring jar files
+  displayName: Generating monitoring jar files
+  jobs:
+  - job: Generate-jar-files
+    pool:
+      vmImage: ubuntu-latest
+    displayName: Running Docker commands
+    steps:
+    - task: Bash@3
+      displayName: Creating profiles
+      inputs:
+        targetType: inline
+        script: |
+          chmod +x ./build.sh
+          docker run -it --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
+          pwd
+          ls -la
