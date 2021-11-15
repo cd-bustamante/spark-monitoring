@@ -8,10 +8,10 @@ trigger:
 
 stages:
 
-- stage: Generating monitoring jar files
+- stage: Generate_jar_files
   displayName: Generating monitoring jar files
   jobs:
-  - job: Generate-jar-files
+  - job: Generate_jar_files
     pool:
       vmImage: ubuntu-latest
     displayName: Running Docker commands
