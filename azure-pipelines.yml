@@ -21,14 +21,14 @@ stages:
       inputs:
         targetType: inline
         script: |
-          set -xeu
+          set -x
           ls -la src/spark-listeners/
           ls -la src/spark-listeners-loganalytics
           ls -la ./build.sh
           chmod +x ./build.sh
           ls -la ./build.sh
           docker --version
-          docker run -it --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
+          docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
           pwd
           ls -la src/spark-listeners/
           ls -la src/spark-listeners-loganalytics
