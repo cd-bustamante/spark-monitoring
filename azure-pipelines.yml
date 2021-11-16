@@ -57,3 +57,13 @@ stages:
         vstsFeedPackagePublish: 'spark-listeners_3.1.2_2.12-1.0.0-sources.jar'
         versionOption: 'major'
         verbosity: 'Trace'
+
+    - task: UniversalPackages@0
+      inputs:
+        command: 'publish'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners-loganalytics'
+        feedsToUsePublish: 'internal'
+        vstsFeedPublish: '429b02e0-326f-42cd-ad15-3f000987e641/dcc55e63-e637-4124-9431-ed3124d5627b'
+        vstsFeedPackagePublish: 'spark-listeners-loganalytics_3.1.2_2.12-1.0.0-sources.jar'
+        versionOption: 'major'
+        verbosity: 'Trace'
