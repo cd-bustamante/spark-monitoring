@@ -51,8 +51,9 @@ stages:
     - task: UniversalPackages@0
       inputs:
         command: 'publish'
-        publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners/'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners'
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '856fd04c-a6fc-4846-bd68-6e246411a5d0/f3e2063b-e464-4dd7-894a-725aa6b93154'
         vstsFeedPackagePublish: 'spark-listeners_3.1.2_2.12-1.0.0-sources.jar'
         versionOption: 'major'
+        verbosity: 'Trace'
