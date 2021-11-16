@@ -4,11 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 variables:
-- name: scala
-  value: "2.12"
-
-- name: spark
-  value: "3.1.2"
+  - group: SCALA_SPARK
 
 trigger:
 - master
@@ -61,8 +57,8 @@ stages:
         publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners'
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '429b02e0-326f-42cd-ad15-3f000987e641/dcc55e63-e637-4124-9431-ed3124d5627b'
-        vstsFeedPackagePublish: 'spark-listeners_3.1.2_2.12-1.0.0-sources.jar'
-        versionOption: 'major'
+        vstsFeedPackagePublish: 'spark-listeners_$(spark)_$(scala)-1.0.0-sources.jar'
+        versionOption: 'patch'
         verbosity: 'Trace'
 
     - task: UniversalPackages@0
@@ -71,6 +67,6 @@ stages:
         publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners-loganalytics'
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '429b02e0-326f-42cd-ad15-3f000987e641/dcc55e63-e637-4124-9431-ed3124d5627b'
-        vstsFeedPackagePublish: 'spark-listeners-loganalytics_3.1.2_2.12-1.0.0-sources.jar'
-        versionOption: 'major'
+        vstsFeedPackagePublish: 'spark-listeners-loganalytics_$(spark)_$(scala)-1.0.0-sources.jar'
+        versionOption: 'patch'
         verbosity: 'Trace'
