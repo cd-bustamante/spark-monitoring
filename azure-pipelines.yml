@@ -29,7 +29,30 @@ stages:
           ls -la ./build.sh
           docker --version
           # docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
-          docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 -w /spark-monitoring/src maven:3.6.3-jdk-8 mvn install -P "scala-2.12_spark-3.0.1"
+          docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 -w /spark-monitoring/src maven:3.6.3-jdk-8 mvn install -P "scala-2.12_spark-3.1.2"
           pwd
           ls -la src/spark-listeners/target
           ls -la src/spark-listeners-loganalytics/target
+
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'src/spark-listeners/'
+        Contents: 'spark-listeners_*sources.jar'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/spark-listeners'
+        CleanTargetFolder: true
+
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'src/spark-listeners-loganalytics/target'
+        Contents: 'spark-listeners-loganalytics*sources.jar'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/spark-listeners-loganalytics'
+        CleanTargetFolder: true
+
+    - task: UniversalPackages@0
+      inputs:
+        command: 'publish'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners'
+        feedsToUsePublish: 'internal'
+        vstsFeedPublish: '856fd04c-a6fc-4846-bd68-6e246411a5d0/f3e2063b-e464-4dd7-894a-725aa6b93154'
+        vstsFeedPackagePublish: 'spark-listener'
+        versionOption: 'major'
