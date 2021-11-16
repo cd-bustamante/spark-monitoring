@@ -54,5 +54,5 @@ stages:
         publishDirectory: '$(Build.ArtifactStagingDirectory)/spark-listeners'
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '856fd04c-a6fc-4846-bd68-6e246411a5d0/f3e2063b-e464-4dd7-894a-725aa6b93154'
-        vstsFeedPackagePublish: 'spark-listener'
+        vstsFeedPackagePublish: 'spark-listeners-loganalytics_3.1.2_2.12-1.0.0-sources.jar'
         versionOption: 'major'
