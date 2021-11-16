@@ -36,7 +36,7 @@ stages:
 
     - task: CopyFiles@2
       inputs:
-        SourceFolder: 'src/spark-listeners/'
+        SourceFolder: 'src/spark-listeners/target'
         Contents: 'spark-listeners*sources.jar'
         TargetFolder: '$(Build.ArtifactStagingDirectory)/spark-listeners'
         CleanTargetFolder: true
