@@ -3,6 +3,13 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+variables:
+- name: scala
+  value: "2.12"
+
+- name: spark
+  value: "3.1.2"
+
 trigger:
 - master
 
@@ -29,7 +36,7 @@ stages:
           ls -la ./build.sh
           docker --version
           # docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 maven:3.6.3-jdk-8 /spark-monitoring/build.sh
-          docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 -w /spark-monitoring/src maven:3.6.3-jdk-8 mvn install -P "scala-2.12_spark-3.1.2"
+          docker run --rm -v `pwd`:/spark-monitoring -v "$HOME/.m2":/root/.m2 -w /spark-monitoring/src maven:3.6.3-jdk-8 mvn install -P "scala-$(scala)_spark-$(spark)"
           pwd
           ls -la src/spark-listeners/target
           ls -la src/spark-listeners-loganalytics/target
