@@ -13,7 +13,6 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'sample/spark-sample-job/pom.xml'
-    goals: 
     options: 'install -P scala-2.12_spark-3.1.2'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
