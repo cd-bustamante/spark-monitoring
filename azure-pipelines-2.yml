@@ -34,8 +34,8 @@ steps:
     options: 'install -P scala-2.12_spark-3.1.2'
     publishJUnitResults: true
     testResultsFiles: '/src/spark*/src/test**/*'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
+    javaHomeOption: 'Path'
+    jdkDirectory: '/usr/lib/jvm/temurin-8-jdk-amd64'
     mavenVersionOption: 'Default'
     mavenOptions: '-Xmx3072m'
     mavenAuthenticateFeed: false
