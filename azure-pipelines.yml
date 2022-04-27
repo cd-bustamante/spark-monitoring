@@ -58,7 +58,7 @@ stages:
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '856fd04c-a6fc-4846-bd68-6e246411a5d0/f3e2063b-e464-4dd7-894a-725aa6b93154'
         vstsFeedPackagePublish: 'spark-listeners_$(spark)_$(scala)-1.0.0-sources.jar'
-        versionOption: 'patch'
+        versionOption: 'minor'
         verbosity: 'Trace'
 
     - task: UniversalPackages@0
@@ -68,5 +68,5 @@ stages:
         feedsToUsePublish: 'internal'
         vstsFeedPublish: '856fd04c-a6fc-4846-bd68-6e246411a5d0/f3e2063b-e464-4dd7-894a-725aa6b93154'
         vstsFeedPackagePublish: 'spark-listeners-loganalytics_$(spark)_$(scala)-1.0.0-sources.jar'
-        versionOption: 'patch'
+        versionOption: 'minor'
         verbosity: 'Trace'
