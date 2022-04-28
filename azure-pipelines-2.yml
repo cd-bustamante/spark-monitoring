@@ -26,7 +26,7 @@ steps:
     echo $jver
     ##vso[task.setvariable variable=jvar;isoutput=true]$jver
     echo "This is another var"
-    echo 
+    echo $(jvar)
   name: JavVersion
     
 - task: Bash@3
@@ -36,21 +36,22 @@ steps:
       mvn --version
       java -version
       echo "this is the java version"
+      echo $(jvar)
       echo $(JavVersion.jvar)
       pwd
       ls -ltr
       cat src/pom.xml
 
 
-#- task: Maven@3
-#  inputs:
-#    mavenPomFile: 'src/pom.xml'
-#    options: 'install -P scala-2.12_spark-3.1.2'
-#    publishJUnitResults: false
-#    javaHomeOption: 'Path'
-#    jdkDirectory: '/usr/lib/jvm/temurin-8-jdk-amd64'
-#    mavenVersionOption: 'Default'
-#    mavenOptions: '-Xmx3072m'
-#    mavenAuthenticateFeed: false
-#    effectivePomSkip: false
-#    sonarQubeRunAnalysis: false
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'src/pom.xml'
+    options: 'install -P scala-2.12_spark-3.1.2'
+    publishJUnitResults: false
+    javaHomeOption: 'Path'
+    jdkDirectory: '/usr/lib/jvm/java-8-openjdk-amd64'
+    mavenVersionOption: 'Default'
+    mavenOptions: '-Xmx3072m'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
