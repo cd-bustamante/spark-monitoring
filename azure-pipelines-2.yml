@@ -11,30 +11,37 @@ pool:
 
 steps:
 
-- task: JavaToolInstaller@0
+- task: Bash@3
   inputs:
-    versionSpec: '8'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+    targetType: 'inline'
+    script: |
+      sudo apt install openjdk-8-jdk openjdk-8-jre
+      jver=$(ls -ltr /Library/Java/JavaVirtualMachines/ | grep jdk1.8 | awk '{print $9}')
+      echo $jver
+      ##vso[task.setvariable jvar=$jver;isoutput=true]
+  name: javaVersion
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       mvn --version
       java -version
+      echo "this is the java version $(javaVersion.jvar)"
       pwd
       ls -ltr
       cat src/pom.xml
 
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'src/pom.xml'
-    options: 'install -P scala-2.12_spark-3.1.2'
-    publishJUnitResults: false
-    javaHomeOption: 'Path'
-    jdkDirectory: '/usr/lib/jvm/temurin-8-jdk-amd64'
-    mavenVersionOption: 'Default'
-    mavenOptions: '-Xmx3072m'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+
+#- task: Maven@3
+#  inputs:
+#    mavenPomFile: 'src/pom.xml'
+#    options: 'install -P scala-2.12_spark-3.1.2'
+#    publishJUnitResults: false
+#    javaHomeOption: 'Path'
+#    jdkDirectory: '/usr/lib/jvm/temurin-8-jdk-amd64'
+#    mavenVersionOption: 'Default'
+#    mavenOptions: '-Xmx3072m'
+#    mavenAuthenticateFeed: false
+#    effectivePomSkip: false
+#    sonarQubeRunAnalysis: false
