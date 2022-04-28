@@ -17,8 +17,9 @@ steps:
     script: |
       sudo apt install openjdk-8-jdk openjdk-8-jre
       ls -ltr /usr/lib/jvm/
-      ls -ltr /usr/lib/jvm/ | grep jdk1.8 | awk '{print $9}')
-      jver=$(ls -ltr /usr/lib/jvm/ | grep jdk1.8 | awk '{print $9}')
+      ls -ltr /usr/lib/jvm/ | grep 'java-8-openjdk-amd' | grep -wv lrwxrwxrwx
+      ls -ltr /usr/lib/jvm/ | grep java-8-openjdk-amd | grep -wv lrwxrwxrwx | awk '{print $9}'
+      jver=$(ls -ltr /usr/lib/jvm/ | grep java-8-openjdk-amd | grep -wv lrwxrwxrwx | awk '{print $9}')
       echo $jver
       ##vso[task.setvariable jvar=$jver;isoutput=true]
   name: javaVersion
