@@ -57,7 +57,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'src/pom.xml'
-    options: 'install -P scala-2.12_spark-3.1.2'
+    options: 'install -X -P scala-2.12_spark-3.1.2'
     publishJUnitResults: false
     javaHomeOption: 'Path'
     jdkDirectory: '/usr/lib/jvm/java-8-openjdk-amd64'
