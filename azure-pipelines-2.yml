@@ -21,8 +21,8 @@ steps:
       ls -ltr /usr/lib/jvm/ | grep java-8-openjdk-amd | grep -wv lrwxrwxrwx | awk '{print $9}'
       jver=$(ls -ltr /usr/lib/jvm/ | grep java-8-openjdk-amd | grep -wv lrwxrwxrwx | awk '{print $9}')
       echo $jver
-      ##vso[task.setvariable jvar=$jver;isoutput=true]
-  name: javaVersion
+      ##vso[task.setvariable variable=jvar;isoutput=true]$jver
+  name: JavVersion
 
 - task: Bash@3
   inputs:
@@ -30,7 +30,8 @@ steps:
     script: |
       mvn --version
       java -version
-      echo "this is the java version $(javaVersion.jvar)"
+      echo "this is the java version"
+      echo $(JavVersion.jvar)
       pwd
       ls -ltr
       cat src/pom.xml
