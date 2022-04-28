@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '8'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -18,22 +23,12 @@ steps:
       mvn --version
       java -version
 
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '8'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'java -version'
 - task: Maven@3
   inputs:
-    mavenPomFile: 'sample/spark-sample-job/pom.xml'
+    mavenPomFile: './src/pom.xml'
     options: 'install -P scala-2.12_spark-3.1.2'
     publishJUnitResults: true
-    testResultsFiles: '/src/spark*/src/test**/*'
+    testResultsFiles: './src/spark*/src/test**/*'
     javaHomeOption: 'Path'
     jdkDirectory: '/usr/lib/jvm/temurin-8-jdk-amd64'
     mavenVersionOption: 'Default'
