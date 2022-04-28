@@ -24,6 +24,8 @@ steps:
       java -version
       pwd
       ls -ltr
+      cat ./src/pom.xml
+      cat src/pom.xml
 
 - task: Maven@3
   inputs:
