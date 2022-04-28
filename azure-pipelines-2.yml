@@ -25,13 +25,13 @@ steps:
     jver=$(ls -ltr /usr/lib/jvm/ | grep java-8-openjdk-amd | grep -wv lrwxrwxrwx | awk '{print $9}')
     echo "##vso[task.setvariable variable=jvar;isOutput=true]$(jver)"
   name: JavaVersion
-  displayname: set java version variable
+
 
 - bash: |
     echo "this is the java version"
     echo $(jver)
     echo $(JavaVersion.jvar)
-  displayname: validating java variable
+  name: JavaVersionOutput
       
 # - task: Bash@3
 #   inputs:
