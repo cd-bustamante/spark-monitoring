@@ -16,7 +16,9 @@ steps:
     targetType: 'inline'
     script: |
       sudo apt install openjdk-8-jdk openjdk-8-jre
-      jver=$(ls -ltr /Library/Java/JavaVirtualMachines/ | grep jdk1.8 | awk '{print $9}')
+      ls -ltr /usr/lib/jvm/
+      ls -ltr /usr/lib/jvm/ | grep jdk1.8 | awk '{print $9}')
+      jver=$(ls -ltr /usr/lib/jvm/ | grep jdk1.8 | awk '{print $9}')
       echo $jver
       ##vso[task.setvariable jvar=$jver;isoutput=true]
   name: javaVersion
