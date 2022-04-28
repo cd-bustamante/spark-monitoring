@@ -22,6 +22,8 @@ steps:
     script: |
       mvn --version
       java -version
+      pwd
+      ls -ltr
 
 - task: Maven@3
   inputs:
