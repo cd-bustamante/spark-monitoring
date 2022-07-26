@@ -60,6 +60,7 @@ stages:
         vstsFeedPackagePublish: 'spark-listeners_$(spark)_$(scala)-1.0.0-sources.jar'
         versionOption: 'minor'
         verbosity: 'Trace'
+        publishedPackageVar: 'spark-listener'
 
     - task: UniversalPackages@0
       inputs:
