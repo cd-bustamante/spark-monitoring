@@ -7,7 +7,7 @@ variables:
   - group: SCALA_SPARK
 
 trigger:
-- master
+- none
 
 stages:
 
